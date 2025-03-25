@@ -1,25 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Image } from "expo-image";
+import { Text, View } from "react-native";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Index</Text>
-      <Image
-        source={require("../assets/images/heroimage.svg")}
-        style={{ width: 200, height: 200 }}
-      />
+    <View className="flex-1 items-center justify-center">
+      <Text className="text-4xl text-emerald-600">Index</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    color: "red",
-  },
-});
