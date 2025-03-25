@@ -3,7 +3,6 @@ import {
   createBook,
   deleteBook,
   getBooks,
-  getSingleBook,
   userBooks,
 } from "../controllers/bookController.js";
 import { isAuthenticated } from "../middlewares/authMiddleware.js";
