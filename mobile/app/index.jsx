@@ -6,7 +6,7 @@ export default function Index() {
     <View style={styles.container}>
       <Text style={styles.title}>Index</Text>
       <Image
-        source={require("../assets/images/react-logo.png")}
+        source={require("../assets/images/heroimage.svg")}
         style={{ width: 200, height: 200 }}
       />
     </View>
