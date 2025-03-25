@@ -5,7 +5,10 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Index</Text>
-      <Image />
+      <Image
+        source={require("../assets/images/react-logo.png")}
+        style={{ width: 200, height: 200 }}
+      />
     </View>
   );
 }
