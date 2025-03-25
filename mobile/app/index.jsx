@@ -1,26 +1,22 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { Image } from "expo-image";
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>This my First React Native Project.</Text>
-      <TouchableOpacity
-        style={{
-          marginTop: 100,
-          backgroundColor: "red",
-          borderCurve: 10,
-          padding: 10,
-        }}
-        onPress={() => console.log("pressed")}
-      >
-        <Text>Touch</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.title}>Index</Text>
+      <Image />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  title: {
+    color: "red",
+  },
+});
