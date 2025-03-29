@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Text,
@@ -24,7 +25,10 @@ export default function Signup() {
 
   const router = useRouter();
 
-  const handleSignup = () => {};
+  const handleSignup = async () => {
+    const result = await register(username, email, password);
+    if (!result.success) Alert.alert("Error", result.error);
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -51,7 +55,7 @@ export default function Signup() {
                 />
                 <TextInput
                   style={styles.input}
-                  placeholder="Jhon Doe"
+                  placeholder="JhonDoe"
                   placeholderTextColor={COLORS.placeholderText}
                   value={username}
                   onChangeText={setUsername}
