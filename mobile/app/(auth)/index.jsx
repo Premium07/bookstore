@@ -20,12 +20,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = () => {
-    setIsLoading(true);
-    // Perform login logic here
-    alert(`Login successful! with ${email}`);
-    setIsLoading(false);
-  };
+  const handleLogin = () => {};
 
   return (
     <KeyboardAvoidingView
