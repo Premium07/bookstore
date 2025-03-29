@@ -54,7 +54,7 @@ export default function Login() {
                 />
                 <TextInput
                   style={styles.input}
-                  placeholder="Enter your email"
+                  placeholder="example@anymail.com"
                   placeholderTextColor={COLORS.placeholderText}
                   value={email}
                   onChangeText={setEmail}
@@ -74,7 +74,7 @@ export default function Login() {
                 />
                 <TextInput
                   style={styles.input}
-                  placeholder="Enter your password"
+                  placeholder="**********"
                   placeholderTextColor={COLORS.placeholderText}
                   value={password}
                   onChangeText={setPassword}
