@@ -27,8 +27,9 @@ export default function Signup() {
 
   const handleSignup = async () => {
     const result = await register(username, email, password);
-    console.log(result);
+    console.log(result.user);
     if (!result.success) Alert.alert("Error", result.message);
+    // if (result.success) Alert.alert("Welcome", result.);
   };
   return (
     <KeyboardAvoidingView

@@ -5,10 +5,12 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import { connectDB } from "./config/db.config.js";
+import job from "./config/cron.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 connectDB();
+job.start();
 
 // middlewares
 app.use(express.json());
