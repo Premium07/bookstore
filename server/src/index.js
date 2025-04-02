@@ -13,9 +13,9 @@ connectDB();
 job.start();
 
 // middlewares
-app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" })); // ⬅️ Increased size limit
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // routes
 

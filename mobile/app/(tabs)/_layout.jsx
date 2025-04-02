@@ -10,7 +10,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: COLORS.primary,
-        // headerTitleStyle: { color:COLORS.textPrimary, fontWeight: "600" },
+        // tabBarInactiveTintColor: COLORS.text,
         headerShadowVisible: false,
         tabBarStyle: {
           backgroundColor: COLORS.cardBackground,
@@ -36,11 +36,7 @@ export default function TabLayout() {
         options={{
           title: "Create",
           tabBarIcon: ({ size, color }) => (
-            <Ionicons
-              name="add-circle-outline"
-              size={size}
-              color={COLORS.primary}
-            />
+            <Ionicons name="add-circle-outline" size={size} color={color} />
           ),
         }}
       />
@@ -49,11 +45,7 @@ export default function TabLayout() {
         options={{
           title: "Profile",
           tabBarIcon: ({ size, color }) => (
-            <Ionicons
-              name="person-outline"
-              size={size}
-              color={COLORS.primary}
-            />
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
         }}
       />

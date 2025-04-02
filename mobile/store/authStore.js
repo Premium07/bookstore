@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { API_URL } from "../constants/api";
+
 export const useAuthStore = create((set) => ({
   user: null,
   token: null,
@@ -9,16 +11,13 @@ export const useAuthStore = create((set) => ({
   register: async (username, email, password) => {
     set({ isLoading: true });
     try {
-      const res = await fetch(
-        "https://bookstore-0eud.onrender.com/api/auth/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, email, password }),
-        }
-      );
+      const res = await fetch(`${API_URL}/auth/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Something went wrong");
 
@@ -57,16 +56,13 @@ export const useAuthStore = create((set) => ({
   login: async (email, password) => {
     try {
       set({ isLoading: true });
-      const res = await fetch(
-        "https://bookstore-0eud.onrender.com/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Something went wrong");
 
