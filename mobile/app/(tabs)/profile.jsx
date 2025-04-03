@@ -56,7 +56,7 @@ export default function Profile() {
     fetchData();
   }, []);
 
-  if (loading) return <Loader />;
+  if (loading && !refreshing) return <Loader />;
 
   return (
     <View style={styles.container}>

@@ -7,7 +7,7 @@ import { formatMemberSince } from "../lib/utils";
 export default function ProfileHeader() {
   const { user } = useAuthStore();
   if (!user) return null;
-  console.log(user);
+  // console.log(user);
   return (
     <View style={styles.profileHeader}>
       <Image source={{ uri: user?.profileImage }} style={styles.profileImage} />
