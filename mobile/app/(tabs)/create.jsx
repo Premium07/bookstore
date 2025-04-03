@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 import { useState } from "react";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import styles from "../../assets/styles/create.styles";
 import { Ionicons } from "@expo/vector-icons";
 import COLORS from "../../constants/colors";
@@ -101,7 +101,7 @@ export default function Create() {
         },
         body: JSON.stringify({
           title,
-          desc,
+          description: desc,
           image: imageDataUrl,
           rating: rating.toString(),
         }),
@@ -116,12 +116,12 @@ export default function Create() {
       setImage(null);
       setImageBase64(null);
       setRating(3);
-     
+
       router.push("/");
     } catch (error) {
       console.log("Error creating post", error);
       Alert.alert("Error", error.message || "Something went wrong");
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
