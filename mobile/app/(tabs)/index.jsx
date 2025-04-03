@@ -1,4 +1,11 @@
-import { FlatList, Image, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  RefreshControl,
+  Text,
+  View,
+} from "react-native";
 import { useAuthStore } from "../../store/authStore";
 import { useEffect, useState } from "react";
 import styles from "../../assets/styles/home.styles";
@@ -6,6 +13,7 @@ import { API_URL } from "../../constants/api";
 import { Ionicons } from "@expo/vector-icons";
 import COLORS from "../../constants/colors";
 import { formatPublishDate } from "../../lib/utils";
+import Loader from "../../components/Loader";
 
 export default function Index() {
   const { token } = useAuthStore();
@@ -20,7 +28,7 @@ export default function Index() {
       if (refresh) setRefreshing(true);
       else if (pageNum === 1) setLoading(true);
 
-      const res = await fetch(`${API_URL}/book?page=${pageNum}&limit=5`, {
+      const res = await fetch(`${API_URL}/book?page=${pageNum}&limit=2`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -54,7 +62,11 @@ export default function Index() {
     fetchBooks();
   }, []);
 
-  const handleLoadMore = async () => {};
+  const handleLoadMore = async () => {
+    if (hasMore && !loading && !refreshing) {
+      await fetchBooks(page + 1);
+    }
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.bookCard}>
@@ -104,6 +116,8 @@ export default function Index() {
     }
     return stars;
   };
+
+  if (loading) return <Loader />;
   return (
     <View style={styles.container}>
       <FlatList
@@ -112,6 +126,46 @@ export default function Index() {
         keyExtractor={(item) => item._id}
         contentContainerStyle={styles.listContainer}
         showsHorizontalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => fetchBooks(1, true)}
+            colors={[COLORS.primary]}
+            tintColor={COLORS.primary}
+          />
+        }
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.1}
+        ListHeaderComponent={
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>BookiFy 📖</Text>
+            <Text style={styles.headerSubtitle}>
+              Discover get reads from the community 👇
+            </Text>
+          </View>
+        }
+        ListFooterComponent={
+          hasMore && books.length > 0 ? (
+            <ActivityIndicator
+              style={styles.footerLoader}
+              size="small"
+              color={COLORS.primary}
+            />
+          ) : null
+        }
+        ListEmptyComponent={
+          <View style={styles.emptyContainer}>
+            <Ionicons
+              name="book-outline"
+              size={60}
+              color={COLORS.textSecondary}
+            />
+            <Text style={styles.emptyText}>No recommendations yet</Text>
+            <Text style={styles.emptySubtext}>
+              Be the first to share a book !
+            </Text>
+          </View>
+        }
       />
     </View>
   );
